@@ -14,3 +14,5 @@ storage.new(base_model)
 
 # Save the data to the JSON file
 storage.save()
+
+storage.reload()

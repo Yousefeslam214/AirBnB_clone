@@ -1,10 +1,9 @@
 #!/usr/bin/python3
 import uuid
 from datetime import datetime
-import models
 #when i test it return unarrangete values
 # i will investigate in it
-
+from __init__ import storage
 
 
 class BaseModel():
@@ -49,4 +48,4 @@ class BaseModel():
     def save(self):
         """Public instance methods"""
         self.updated_at = datetime.now()
-        models.storage.save()
+        storage.save()
