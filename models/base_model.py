@@ -3,7 +3,7 @@ import uuid
 from datetime import datetime
 #when i test it return unarrangete values
 # i will investigate in it
-from __init__ import storage
+from models import storage
 
 
 class BaseModel():
