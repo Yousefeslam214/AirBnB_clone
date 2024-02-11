@@ -2,7 +2,7 @@
 import os
 import json
 from models.base_model import BaseModel
-#from models.user import User
+from models.user import User
 #from models.state import State
 #from models.city import City
 #from models.place import Place
@@ -24,18 +24,32 @@ class FileStorage():
         FileStorage.__objects[key] = obj
 
     def save(self):
-        print(FileStorage.__file_path)
         with open(FileStorage.__file_path, 'w') as outfile:
             json.dump({k: v.to_dict() for k, v in FileStorage.__objects.items()}, outfile)
 
     def reload(self):
         """Deserialize the JSON file __file_path to __objects, if it exists."""
+        models = {'User': User, 'BaseModel': BaseModel}
         try:
             with open(FileStorage.__file_path) as f:
-                objdict = json.load(f)
-                for o in objdict.values():
-                    cls_name = o["__class__"]
-                    del o["__class__"]
-                    self.new(eval(cls_name)(**o))
+                obj_dict = json.load(f)
+                for k, v in obj_dict.items():
+                    for model, cls in models.items():
+                        if v["__class__"] == model:
+                            self.__objects[k] = cls(**v)
         except FileNotFoundError:
-            return
+            pass
+        
+    
+    #the work function
+    # def reload(self):
+    #     """Deserialize the JSON file __file_path to __objects, if it exists."""
+    #     try:
+    #         with open(FileStorage.__file_path) as f:
+    #             objdict = json.load(f)
+    #             for o in objdict.values():
+    #                 cls_name = o["__class__"]
+    #                 del o["__class__"]
+    #                 self.new(eval(cls_name)(**o))
+    #     except FileNotFoundError:
+    #         return
