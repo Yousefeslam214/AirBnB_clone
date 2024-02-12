@@ -3,6 +3,7 @@ import cmd
 from models.base_model import BaseModel
 from models import storage
 
+
 class HBNBCommand(cmd.Cmd):
     """CLI for HBNB project"""
     prompt = "(hbnb) "
@@ -65,7 +66,6 @@ class HBNBCommand(cmd.Cmd):
 
         instance = storage.all()[k]
         print(instance)
-
 
     def do_all(self, args):
         """Prints all string representations of instances
@@ -144,8 +144,6 @@ class HBNBCommand(cmd.Cmd):
 
         self.save()
 
-
-
     def do_destroy(self, args):
         """Deletes an instance based on the class name
         and id (save the change into the JSON file).
@@ -177,7 +175,6 @@ class HBNBCommand(cmd.Cmd):
 
         storage.save()
 
-
     def do_quit(self, args):
         """Exit the CLI"""
         return True
@@ -186,6 +183,7 @@ class HBNBCommand(cmd.Cmd):
         """Exit the CLI on Ctrl+D"""
         print()
         return True
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
