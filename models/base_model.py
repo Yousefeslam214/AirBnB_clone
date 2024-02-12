@@ -1,9 +1,8 @@
 #!/usr/bin/python3
 import uuid
 from datetime import datetime
-#when i test it return unarrangete values
-# i will investigate in it
 import models
+
 
 class BaseModel():
     """
@@ -29,20 +28,19 @@ class BaseModel():
                     else:
                         setattr(self, key, value)
 
-
     def __str__(self):
         """
         should print:
         [<class name>] (<self.id>) <self.__dict__>
         """
         return "[{}] ({}) {}".format(
-            type(self).__name__,self.id, self.__dict__
+            type(self).__name__, self.id, self.__dict__
         )
 
     def to_dict(self):
         """Public instance methods"""
-        dict = {**self.__dict__} # id created_at updated_at
-        dict['__class__'] = type(self).__name__ # BaseModel
+        dict = {**self.__dict__}  # id created_at updated_at
+        dict['__class__'] = type(self).__name__  # BaseModel
         dict['created_at'] = dict['created_at'].isoformat()
         dict['updated_at'] = dict['updated_at'].isoformat()
         return dict
