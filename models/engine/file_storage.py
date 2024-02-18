@@ -29,8 +29,8 @@ class FileStorage():
     def reload(self):
         """Deserialize the JSON file __file_path to __objects, if it exists."""
         models = {'BaseModel': BaseModel, 'User': User,
-                           'Amenity': Amenity, 'City': City, 'State': State,
-                           'Place': Place, 'Review': Review}
+                  'Amenity': Amenity, 'City': City, 'State': State,
+                  'Place': Place, 'Review': Review}
         try:
             with open(FileStorage.__file_path) as f:
                 obj_dict = json.load(f)
